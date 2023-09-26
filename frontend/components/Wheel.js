@@ -1,6 +1,10 @@
 import React from 'react'
 
+
 export default function Wheel(props) {
+
+
+ 
   return (
     <div id="wrapper">
       <div id="wheel">
@@ -13,8 +17,9 @@ export default function Wheel(props) {
       </div>
       <div id="keypad">
         <button id="counterClockwiseBtn" >Counter clockwise</button>
-        <button id="clockwiseBtn">Clockwise</button>
+        <button  id="clockwiseBtn">Clockwise</button>
       </div>
     </div>
   )
 }
+
