@@ -87,14 +87,15 @@ export function postAnswer(answer) {
 
 export function postQuiz(quiz) {
   return function (dispatch) {
+     
     axios
       .post("http://localhost:9000/api/quiz/new", quiz)
-      .then((res) => {
-        console.log(res)
+      .then(({data}) => {
+        console.log(data)
         dispatch({
           type: SET_INFO_MESSAGE,
           payload: `Congrats: "${quiz.question_text}" is a great question!`,
-        });
+        })
         // If needed, dispatch the resetting of the form here.
       })
       .catch((err) => {

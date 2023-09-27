@@ -1,12 +1,11 @@
 // ❗ You don't need to add extra reducers to achieve MVP
 import { combineReducers } from "redux";
-import {
+import {INPUT_CHANGE,
   MOVE_CLOCKWISE,
   MOVE_COUNTERCLOCKWISE,
   SET_SELECTED_ANSWER,
   SET_INFO_MESSAGE,
   SET_QUIZ_INTO_STATE,
-  INPUT_CHANGE,
   RESET_FORM
 } from "./action-types";
 
@@ -66,15 +65,14 @@ const initialFormState = {
   newFalseAnswer: "",
 };
 function form(state = initialFormState, action) {
-  const evt = action.payload;
   switch (action.type) {
     case INPUT_CHANGE:
       return {
         ...state,
-        [evt.target.id]: evt.target.value
+        [action.payload.id]: action.payload.value
       }
     case RESET_FORM:
-      return (state = initialFormState)
+      return initialFormState
     default:
       return state
   }

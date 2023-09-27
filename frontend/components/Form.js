@@ -2,14 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../state/action-creators";
 
-export function Form(props) {
-  
-  const formValues = {
-    question_text: props.form.newQuestion,
-    true_answer_text: props.form.newTrueAnswer,
-    false_answer_text: props.form.newFalseAnswer,
-  };
 
+
+
+export function Form(props) {
   const validateValues = () => {
     if (
       props.form.newQuestion.trim() &&
@@ -21,14 +17,22 @@ export function Form(props) {
       return true;
     }
   };
+  const quiz = {
+    question_text: props.form.newQuestion,
+    true_answer_text: props.form.newTrueAnswer,
+    false_answer_text: props.form.newFalseAnswer,
+  };
+
+  
 
   const onChange = (evt) => {
-    props.inputChange(evt.target);
+    
+    props.inputChange(evt);
   };
 
   const onSubmit = (evt) => {
     evt.preventDefault();
-    props.postQuiz(formValues);
+    props.postQuiz(quiz);
     props.resetForm();
     
   };
