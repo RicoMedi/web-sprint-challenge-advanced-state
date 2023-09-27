@@ -66,9 +66,19 @@ const initialFormState = {
   newFalseAnswer: "",
 };
 function form(state = initialFormState, action) {
-  return state;
+  const evt = action.payload;
+  switch (action.type) {
+    case INPUT_CHANGE:
+      return {
+        ...state,
+        [evt.target.id]: evt.target.value
+      }
+    case RESET_FORM:
+      return (state = initialFormState)
+    default:
+      return state
+  }
 }
-
 export default combineReducers({
   wheel,
   quiz,

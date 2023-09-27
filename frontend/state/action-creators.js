@@ -35,10 +35,10 @@ export function setQuiz() {
   };
 }
 
-export function inputChange(e) {
+export function inputChange(evt) {
   return {
     type: INPUT_CHANGE,
-    payload: e.target,
+    payload: evt.target,
   };
 }
 
@@ -73,6 +73,7 @@ export function postAnswer(answer) {
       .post("http://localhost:9000/api/quiz/answer", answer)
       .then(({ data }) => {
         console.log(data);
+        
         dispatch({ type: SET_INFO_MESSAGE, payload: data.message });
         // If needed, dispatch the fetching of the next quiz here.
       })
@@ -88,14 +89,15 @@ export function postQuiz(quiz) {
   return function (dispatch) {
     axios
       .post("http://localhost:9000/api/quiz/new", quiz)
-      .then(() => {
+      .then((res) => {
+        console.log(res)
         dispatch({
           type: SET_INFO_MESSAGE,
           payload: `Congrats: "${quiz.question_text}" is a great question!`,
         });
         // If needed, dispatch the resetting of the form here.
       })
-      .catch(() => {
+      .catch((err) => {
         console.error("Error posting new quiz:", err);
         dispatch({
           type: SET_INFO_MESSAGE,
